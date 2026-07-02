@@ -42,10 +42,15 @@ export async function POST(request) {
     });
     response.cookies.set(SESSION_COOKIE, token, sessionCookieOptions);
     return response;
-  } catch (err) {
-    return NextResponse.json(
-      { success: false, message: 'Something went wrong. Please try again later.' },
-      { status: 500 }
-    );
-  }
+  }catch (err) {
+  console.error(err);
+
+  return NextResponse.json(
+    {
+      success: false,
+      message: err.message,
+      stack: err.stack,
+    },
+    { status: 500 }
+  );
 }
