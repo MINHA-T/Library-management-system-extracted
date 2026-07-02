@@ -8,25 +8,15 @@ export async function POST(request) {
     const username = (body.username || '').trim();
     const password = body.password || '';
 
-    if (!user || password !== user.password) {
-  return NextResponse.json(
-    { success: false, message: 'Invalid username or password.' },
-    { status: 401 }
-  );
-}
-
     const rows = await query(
       'SELECT user_id, full_name, username, password, role FROM users WHERE username = ? LIMIT 1',
       [username]
     );
+
     const user = rows[0];
-console.log("User:", user.username);
 
-if (user) {
-  console.log("Password match:", await bcrypt.compare(password, user.password));
-}
-
-    if (!user || !(await bcrypt.compare(password, user.password))) {
+    // Plain text password check
+    if (!user || password !== user.password) {
       return NextResponse.json(
         { success: false, message: 'Invalid username or password.' },
         { status: 401 }
@@ -44,8 +34,10 @@ if (user) {
         role: user.role,
       },
     });
+
     response.cookies.set(SESSION_COOKIE, token, sessionCookieOptions);
     return response;
+
   } catch (err) {
     console.error(err);
 
@@ -53,7 +45,6 @@ if (user) {
       {
         success: false,
         message: err.message,
-        stack: err.stack,
       },
       { status: 500 }
     );
