@@ -2,11 +2,6 @@
 -- Library Management System - Database Schema
 -- =====================================================
 
-CREATE DATABASE IF NOT EXISTS library_management
-    CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-
-USE library_management;
-
 -- ---------------------------------------------------
 -- Table: users
 -- Stores login accounts and library members
@@ -67,9 +62,10 @@ CREATE TABLE IF NOT EXISTS transactions (
 -- (hash below corresponds to "admin123")
 -- All three sample accounts use the password: admin123
 INSERT INTO users (full_name, username, password, email, role) VALUES
-('System Administrator', 'admin', '$2b$10$TLaOdtvZFiZMJZ3bLuNioOt.h/7109Ru4OZ7ABsWWLl2G.conl1Bm', 'admin@library.com', 'admin'),
-('Priya Sharma', 'priya', '$2b$10$TLaOdtvZFiZMJZ3bLuNioOt.h/7109Ru4OZ7ABsWWLl2G.conl1Bm', 'priya@library.com', 'librarian'),
-('Arjun Kumar', 'arjun', '$2b$10$TLaOdtvZFiZMJZ3bLuNioOt.h/7109Ru4OZ7ABsWWLl2G.conl1Bm', 'arjun@library.com', 'member');
+('Admin', 'Admin', '$2a$10$OnwpoEuLx6XVMnijTVuk1OwOpdunADJlA5hxvbge3GKvdY.dZcBzy', 'admin@library.com', 'admin'),
+('Muaadh', 'Muaadh', '$2a$10$c8c3JUqYLJSUwjtQo9QFHehCACYG2pkltXWUZIcrX1IFX10tKG/gC', 'muaadh@library.com', 'librarian'),
+('Mifra', 'Mifra', '$2a$10$19C6oPnx6Ked9Jum5Kd1wO/EcNx1eBb.qT3CkajkPfNQmGLW0pz.W', 'mifra@library.com', 'member'),
+('Minha', 'Minha', '$2a$10$M60pLpL6Shl2te/MnrufA.AnotKx/COULGZsN0Xafq/Wa7rJGaraK', 'minha@library.com', 'member');
 
 INSERT INTO books (title, author, isbn, category, total_copies, available_copies) VALUES
 ('The Alchemist', 'Paulo Coelho', '9780061122415', 'Fiction', 5, 3),
