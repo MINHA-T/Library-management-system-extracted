@@ -21,6 +21,11 @@ export async function POST(request) {
       [username]
     );
     const user = rows[0];
+console.log("User:", user.username);
+
+if (user) {
+  console.log("Password match:", await bcrypt.compare(password, user.password));
+}
 
     if (!user || !(await bcrypt.compare(password, user.password))) {
       return NextResponse.json(
