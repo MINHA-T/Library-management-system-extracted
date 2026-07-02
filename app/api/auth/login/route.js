@@ -1,5 +1,4 @@
 import { NextResponse } from 'next/server';
-import bcrypt from 'bcryptjs';
 import { query } from '@/lib/db';
 import { createSessionToken, sessionCookieOptions, SESSION_COOKIE } from '@/lib/auth';
 
@@ -9,12 +8,12 @@ export async function POST(request) {
     const username = (body.username || '').trim();
     const password = body.password || '';
 
-    if (!username || !password) {
-      return NextResponse.json(
-        { success: false, message: 'Please enter both username and password.' },
-        { status: 400 }
-      );
-    }
+    if (!user || password !== user.password) {
+  return NextResponse.json(
+    { success: false, message: 'Invalid username or password.' },
+    { status: 401 }
+  );
+}
 
     const rows = await query(
       'SELECT user_id, full_name, username, password, role FROM users WHERE username = ? LIMIT 1',

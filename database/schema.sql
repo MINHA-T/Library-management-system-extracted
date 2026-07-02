@@ -62,10 +62,10 @@ CREATE TABLE IF NOT EXISTS transactions (
 -- (hash below corresponds to "admin123")
 -- All three sample accounts use the password: admin123
 INSERT INTO users (full_name, username, password, email, role) VALUES
-('Admin', 'Admin', '$2a$10$OnwpoEuLx6XVMnijTvuk1OwOpdunADJlA5hxvbge3GKvdY.dZcBzy', 'admin@library.com', 'admin'),
-('Muaadh', 'Muaadh', '$2a$10$c8c3JUqYLJSUWjtQo9QFHehCACYG2pkltXWUZ1crX1IFX10tKG/gC', 'muaadh@library.com', 'librarian'),
-('Mifra', 'Mifra', '$2a$10$19C6oPnx6Ked9Jum5Kd1wQ/EcNx1eBb.qT3CkajkPfNQmGLW0pz.W', 'mifra@library.com', 'member'),
-('Minha', 'Minha', '$2a$10$M60pLpL6Shl2te/MnrufA.AnotKx/COULGZsN0Xafq/Wa7rJGaraK', 'minha@library.com', 'member');
+('Admin', 'Admin', 'admin123', 'admin@library.com', 'admin'),
+('Muaadh', 'Muaadh', 'muaadh123', 'muaadh@library.com', 'librarian'),
+('Mifra', 'Mifra', 'mifra123', 'mifra@library.com', 'member'),
+('Minha', 'Minha', 'minha123', 'minha@library.com', 'member');
 
 INSERT INTO books (title, author, isbn, category, total_copies, available_copies) VALUES
 ('The Alchemist', 'Paulo Coelho', '9780061122415', 'Fiction', 5, 3),
